@@ -1,0 +1,134 @@
+body{
+    margin:0;
+}
+
+.navbar-brand img{
+    padding-right: 8px;
+    width: 32px;
+    height: 32px;
+}
+.content{
+    background-color: #3d3e3d;
+    margin-top: 32px;
+    padding: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card{
+    width: 12rem;
+   margin: 32px 16px 32px 16px;
+   cursor: pointer;
+   transition: all 225ms ease-in-out;
+   
+}
+
+.card:hover{
+    filter: drop-shadow(5px 5px 0px black);
+    transform: scale(1.1);
+    
+}
+
+.card img{
+    padding: 8px;
+}
+
+.card span{
+    font-weight: 700;
+}
+.card-header{
+    background-color: #686b6a;
+    color: white;
+}
+
+.padding-12{
+    padding-right: 12px;
+}
+
+.card-footer{
+    background-color: #686b6a;
+    text-align: center;
+    color: white;
+}
+
+.card-footer span{
+    padding: 4px 8px 4px 8px;
+    font-weight: 500;
+}
+
+/* popup */
+
+
+#bigCard{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: none;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: #92989691;
+    z-index: 33;
+}
+
+.popup-content{
+    /* background-color: white; */
+    /* height: 50vh;
+    width: 30vw; */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column; 
+}
+
+/* Type background-color */
+.bg-grass{
+    background-color: #76CC54;
+}
+
+.bg-poison{
+    background-color: #A65397;
+}
+.bg-fire{
+    background-color: #ED4225;
+}
+.bg-water{
+    background-color: #4F9AFF;
+}
+.bg-bug{
+    background-color: #ABBB23;
+}
+.bg-flying{
+    background-color: #535C93;
+}
+.bg-electric{
+    background-color: #d2cf17;
+}
+.bg-ground{
+    background-color: #b5dd44;
+}
+.bg-normal{
+    background-color: #c7c2d5;
+}
+.bg-fairy{
+    background-color: #594e77;
+}
+.bg-fighting{
+    background-color: #550505;
+}
+.bg-psychic{
+    background-color: #bd6e6e;
+}
+.bg-rock{
+    background-color: #534f4f;
+}
+.bg-ice{
+    background-color: #ffffffa8;
+}
+.bg-ghost{
+    background-color: #728de5a8;
+}
+

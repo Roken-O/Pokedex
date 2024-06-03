@@ -4,10 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
-    <link rel="Stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="./img/pokeBall.png" />
     <script src="script.js" defer></script>
-</head>
-<body>
-    
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+<body onload="init()">
+
+<header>
+    <nav class="navbar fixed-top bg-body-tertiary">
+        <div class="container-fluid">       
+          <h2 class="navbar-brand"><img src="./img/pokeBall.png">Pokedex</h2>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+</header>
+
+    <div id="bigCard" onclick="closePopup()">
+       
+    </div>
+    </div>
+    <div id="content" class="content"></div>
+      
 </body>
 </html>
