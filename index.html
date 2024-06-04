@@ -17,8 +17,8 @@
         <div class="container-fluid">       
           <h2 class="navbar-brand"><img src="./img/pokeBall.png">Pokedex</h2>
           <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2" type="search" placeholder="Search a Pokemon..." aria-label="Search">
+            <button class="btn btn-primary" type="submit">Search</button>
           </form>
         </div>
       </nav>
@@ -29,6 +29,9 @@
     </div>
     </div>
     <div id="content" class="content"></div>
+    <div class="load-container">
+      <button onclick="loadMorePokemon()" class="btn btn-primary">Load more Pokemons</button>
+    </div>
       
 </body>
 </html>
