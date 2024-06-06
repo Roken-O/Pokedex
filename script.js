@@ -1,9 +1,18 @@
+let img = [];
 let data = [];
 let start = 1;
-let end = 15;
+let end = 20;
+let indexNextIcon = 0;
 
-function init() {
-  fetchData();
+async function init() {
+  try {
+    await fetchData();
+    console.log('funktoniert')
+  } catch (error) {
+    console.error(error);
+  }
+  getImgHeader();
+  nextImgHeader();
 }
 
 async function fetchData() {
@@ -15,6 +24,32 @@ async function fetchData() {
   start = start + 15;
   end = end + 15;
   renderPokemonData();
+}
+
+function getImgHeader() {
+  for (let i = 0; i < 20; i++) {
+    const pokemon = data[i];
+    if (pokemon) {
+      const imgSrc = pokemon['sprites']['other']['showdown']['front_shiny'];
+      img.push(imgSrc);
+    }
+  }
+  document.getElementById('next-pokemon-img').src = img[0];
+}
+
+function nextImgHeader() {
+  let pokemonImg = document.getElementById('next-pokemon-img');
+  pokemonImg.classList.add('fade-out');
+  setTimeout(() => {
+    if (indexNextIcon == 0) {
+      indexNextIcon = img.length - 1;
+    } else {
+      indexNextIcon = indexNextIcon - 1;
+    }
+    pokemonImg.src = img[indexNextIcon]; 
+    pokemonImg.classList.remove('fade-out'); 
+  }, 500); 
+  setTimeout(nextImgHeader, 4000);
 }
 
 function renderPokemonData() {
@@ -32,8 +67,7 @@ function rendertypes(i, pokemonData) {
   let type = document.getElementById(`pokemonTypes${i}`);
   for (let j = 0; j < pokemonData["types"].length; j++) {
     let pokemonType = pokemonData["types"][j];
-    type.innerHTML += `
-          <span class="bg-${pokemonType["type"]["name"]}">${pokemonType["type"]["name"]}</span>`;
+    type.innerHTML += `<span class="m-right-span bg-${pokemonType["type"]["name"]}">${pokemonType["type"]["name"]}</span>`;
   }
 }
 
@@ -42,9 +76,9 @@ function openCard(index) {
   bigCard.style.display = "flex";
   const pokemonData = data[index];
   bigCard.innerHTML = "";
-  bigCard.innerHTML += `<div onclick="doNotClose(event)" id="popCard" class="popup-content"></div>`;
+  bigCard.innerHTML += renderBigCard(index);
   let popup = document.getElementById("popCard");
-  popup.innerHTML = renderPopup(index, pokemonData);
+  popup.innerHTML += renderPopup(index, pokemonData);
   rendertypes(index, pokemonData);
   popup.innerHTML += renderTypesHTML(index);
   rendermain(index);
@@ -53,7 +87,6 @@ function openCard(index) {
 function rendermain(index) {
   const pokemonData = data[index];
   let mainContainer = document.getElementById("mainContainer");
-  // mainContainer.innerHTML = '';
   mainContainer.innerHTML = renderMainHTML(pokemonData);
   let pokemonAbility = document.getElementById("pokemon-abilities");
   pokemonAbility.innerHTML = "";
@@ -69,43 +102,42 @@ function renderStats(index) {
   let statsContainer = document.getElementById("mainContainer");
   statsContainer.innerHTML = '<table class="mainTable" id="statTable"></table>';
   for (let i = 0; i < data[index]["stats"].length; i++) {
+    let pokemonData = data[index];
     let stat = data[index]["stats"][i];
-
-    document.getElementById("statTable").innerHTML += renderStatsHTML(stat);
+    document.getElementById("statTable").innerHTML += renderStatsHTML(
+      stat,
+      pokemonData
+    );
   }
 }
 
 async function fetchEvolutionChain(pokemonId) {
-  const speciesResponse = await fetch(
-    `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/`
-  );
+  const speciesResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/` );
   const speciesData = await speciesResponse.json();
-  const evolutionChainUrl = speciesData.evolution_chain.url;
+  const evolutionChainUrl = speciesData["evolution_chain"]["url"];
   const evolutionChainResponse = await fetch(evolutionChainUrl);
   const evolutionChainData = await evolutionChainResponse.json();
-  return evolutionChainData.chain;
+  return evolutionChainData["chain"];
 }
 
 function extractEvolutionChain(chain) {
   const evolutionChain = [];
-  let current = chain;
-  while (current) {
-    evolutionChain.push(current.species.name);
-    current = current.evolves_to.length ? current.evolves_to[0] : null;
+  for (let current = chain; current; current = current["evolves_to"].length ? current["evolves_to"][0] : null) {
+    evolutionChain.push(current["species"]["name"]);
   }
   return evolutionChain;
 }
 
 async function renderEvoChain(index) {
   const pokemonData = data[index];
-  const evolutionChain = await fetchEvolutionChain(pokemonData.id);
+  const evolutionChain = await fetchEvolutionChain(pokemonData["id"]);
   const evoChainList = extractEvolutionChain(evolutionChain);
   let evoChainContainer = document.getElementById("mainContainer");
   evoChainContainer.innerHTML = `<div class="evo-chain"></div>`;
   let evoChainDiv = evoChainContainer.querySelector(".evo-chain");
 
   for (const evoName of evoChainList) {
-    const evoPokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${evoName}` );
+    const evoPokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${evoName}`);
     const evoPokemonData = await evoPokemonResponse.json();
     evoChainDiv.innerHTML += renderEvoChainHTML(evoPokemonData);
   }
@@ -120,8 +152,18 @@ function doNotClose(event) {
   event.stopPropagation();
 }
 
-function loadMorePokemon() {  
-  fetchData();
+async function loadMorePokemon() {
+  document.getElementById("load-btn").disabled = true;
+  document.getElementById("load-btn").classList.remove('load-container-button');
+  document.getElementById("load-btn").classList.add('load-btn');
+
+  try {
+    await fetchData();
+    console.log('funktoniert')
+  } catch (error) {
+    console.error(error);
+  }
+  document.getElementById("load-btn").disabled = false;
 }
 
 function filterName() {
@@ -129,20 +171,47 @@ function filterName() {
   let search = document.getElementById("search").value;
   search = search.toLowerCase();
   console.log(search);
-
-  let content = document.getElementById("content");
-  content.innerHTML = "";
-
-  for (let i = 0; i < data.length; i++) {
-    const pokemonName = data[i]["name"];
-    if (pokemonName.toLowerCase().includes(search)) {
-      let pokemonData = data[i];
-      content.innerHTML += renderCards(i, pokemonData);
-      rendertypes(i, pokemonData);
-      numOfFilterName++;
+  if (search.length > 2) {
+    let content = document.getElementById("content");
+    content.innerHTML = "";
+    for (let i = 0; i < data.length; i++) {
+      const pokemonName = data[i]["name"];
+      if (pokemonName.toLowerCase().includes(search)) {
+        let pokemonData = data[i];
+        content.innerHTML += renderCards(i, pokemonData);
+        rendertypes(i, pokemonData);
+        numOfFilterName++;
+      }
     }
+    if (numOfFilterName == 0) {
+      content.innerHTML = showWarningMassage();
+    }
+  } else {
+    renderPokemonData();
   }
-  if (numOfFilterName == 0) {
-    content.innerHTML = `<div class="filter-name"><span>Dieses Pokémon existiert nicht!</span></div>`
+}
+
+function closeWarningMassage() {
+  renderPokemonData();
+  document.getElementById("search").value = '';
+}
+
+function arrowLeftImage(i, event) {
+  event.stopPropagation();
+  if (i == data.length - 1) {
+    i = 0;
+  } else {
+    i = i + 1;
   }
+  openCard(i);
+}
+
+function arrowRightImage(i, event) {
+  event.stopPropagation();
+  if (i == 0) {
+    i = data.length - 1;
+  } else {
+    i = i - 1;
+  }
+  openCard(i);
 }

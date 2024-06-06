@@ -12,6 +12,13 @@ function renderCards(i, pokemonData) {
       </div>`;
   }
 
+  function renderBigCard(index){
+    return `
+       <img class="arrowImg" onclick="arrowLeftImage(${index}, event)" src="./img/arrow-left-solid.svg" alt="nach links Image" >
+       <div onclick="doNotClose(event)" id="popCard" class="popup-content"></div>
+       <img class="arrowImg" onclick="arrowRightImage(${index}, event)" src="./img/arrow-right-solid.svg" alt="nach rechts Image">`;
+  }
+
   function renderPopup(index, pokemonData){
     return `
        <div class="big-card">
@@ -60,13 +67,13 @@ function renderCards(i, pokemonData) {
       </table>`;
   }
 
-  function renderStatsHTML(stat){
+  function renderStatsHTML(stat, pokemonData){
     return `
           <tr>
             <td>${stat["stat"]["name"]}: </td>
             <td class="td-progress">
               <div class="progress" role="progressbar" aria-label="${stat["stat"]["name"]}" aria-valuenow="${stat["base_stat"]}" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar" style="width: ${stat["base_stat"]}%">${stat["base_stat"]}</div>
+                <div class="progress-bar bg-${pokemonData["types"][0]["type"]["name"]}" style="width: ${stat["base_stat"]}%">${stat["base_stat"]}</div>
               </div>
             </td>
           </tr>`;
@@ -75,7 +82,15 @@ function renderCards(i, pokemonData) {
   function renderEvoChainHTML(evoPokemonData){
     return `
        <div class="evo-pokemon">
-         <img src="${evoPokemonData.sprites.other["official-artwork"].front_default}" alt="${evoPokemonData.name}">
-         <span>${evoPokemonData.name}</span>
+         <img src="${evoPokemonData['sprites']['other']["official-artwork"]['front_default']}" alt="${evoPokemonData['name']}">
+         <span>${evoPokemonData['name']}</span>
+       </div>`;
+  }
+
+  function showWarningMassage(){
+    return `
+        <div class="filter-name">
+           <span>Dieses Pokémon existiert nicht!</span>
+           <button onclick="closeWarningMassage()" type="button" class="btn btn-outline-danger">OK</button>
        </div>`;
   }

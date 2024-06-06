@@ -1,17 +1,18 @@
-body{
-    margin:0;
-    background-color: #2e302e;
+body {
+    margin: 0;
+    background-color: #282928;
     font-family: cursive;
 }
-h2{
+
+h2 {
     cursor: pointer;
 }
 
-.navbar{
-    background-color: #282928 !important;
+.navbar {
+    background-color: #2e302e !important;
 }
 
-.navbar-brand{
+.navbar-brand {
     margin-left: 40px;
     font-size: 24px;
     font-weight: bold;
@@ -19,22 +20,35 @@ h2{
     color: #bb191e;
 }
 
-.navbar-brand img{
+.navbar-brand img {
     padding-right: 8px;
     width: 32px;
     height: 32px;
 }
-.content{
 
+.pokemon-img-header {
+    height: 50px !important;
+    width: 50px !important;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+.content {
     margin-top: 32px;
+    margin-bottom: 32px;
     padding: 32px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
 }
-.load-container{
-    height: 50px;
+
+.load-container {
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,97 +56,119 @@ h2{
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #282928;
+    background-color: #2e302e;
     padding-top: 40px;
     padding-bottom: 40px;
 }
 
-.load-container button{
-    padding: 16px 70px 16px 70px;
+.load-container-button {
+    padding: 10px 70px 10px 70px;
     --bs-btn-border-color: #bb191e;
 }
-.load-container button:hover{
-     --bs-btn-hover-border-color: #f81f26;
-}
-.card{
-   width: 12rem;
-   margin: 32px 16px 32px 16px;
-   cursor: pointer;
-   transition: all 225ms ease-in-out;
+
+.load-btn {
+    padding: 10px 70px 10px 70px;
+    --bs-btn-border-color: #bb191e;
+    --bs-btn-disabled-bg: white;
+    --bs-btn-disabled-border-color: white;
 }
 
-.card:hover{
+.load-container button:hover {
+    --bs-btn-hover-border-color: #f81f26;
+}
+
+.card {
+    width: 12rem;
+    margin: 32px 16px 32px 16px;
+    cursor: pointer;
+    transition: all 225ms ease-in-out;
+}
+
+.card:hover {
     filter: drop-shadow(5px 5px 0px black);
     transform: scale(1.1);
 }
 
-.display-flex{
+.display-flex {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.pokemon-img{
+.pokemon-img {
     padding: 8px;
-    width:180px;
+    width: 180px;
     transition: all 225ms ease-in-out;
 }
-.pokemon-img:hover{
+
+.pokemon-img:hover {
     filter: drop-shadow(5px 5px 0px black);
     transform: scale(1.1);
 }
 
-.card span{
+.card span {
     font-weight: 700;
 }
-.card-header{
+
+.card-header {
     background-color: #464946;
     color: white;
 }
 
-.padding-12{
+.padding-12 {
     padding-right: 12px;
 }
 
-.card-footer{
+.card-footer {
     background-color: #464946;
     text-align: center;
     color: white;
 }
 
-.card-footer span{
+.card-footer span {
     padding: 4px 8px 4px 8px;
     font-weight: 500;
 }
 
-.m-right{
+.m-right-span {
+    margin-right: 8px;
+}
+
+.m-right {
     margin-right: 40px;
     color: white !important;
 }
-.m-right input{
-    background-color:  #faf8f8;
+
+.m-right input {
+    background-color: #faf8f8;
     font-size: 14px;
-    color: white !important;
-}
-.color-red{
-    background-color:  #bb191e;
-}
-.color-red:hover{
-    background-color:  #bb191e62;
 }
 
-.filter-name{
+.color-red {
+    background-color: #bb191e;
+}
+
+.color-red:hover {
+    background-color: #bb191e62;
+}
+
+.filter-name {
     color: white;
-    margin-top:60px;
+    margin-top: 60px;
     font-size: 24px;
     background-color: #550505;
     padding: 32px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
 }
+
+.filter-name span {
+    margin-bottom: 32px;
+}
+
 /* popup */
-
-
-#bigCard{
+#bigCard {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -140,13 +176,13 @@ h2{
     display: none;
     height: 100vh;
     width: 100%;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     background-color: #92989691;
     z-index: 33;
 }
 
-.popup-content{
+.popup-content {
     filter: drop-shadow(5px 5px 0px black);
     background-color: #464946;
     border: 1px solid white;
@@ -155,116 +191,150 @@ h2{
     width: 400px;
     border-radius: 8px;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
 }
-.big-card-header{
+
+.arrowImg {
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    transition: all 225ms ease-in-out;
+}
+
+.arrowImg:hover {
+    padding: 4px;
+    opacity: 0.7;
+    border: 1px solid black;
+    scale: (1.5);
+    border-radius: 100px;
+}
+
+.big-card-header {
     height: 50px;
     text-align: center;
     padding: 8px;
 }
 
-.big-card img{
-    width:100%;
-    height:200px;
+.big-card img {
+    width: 200px;
+    height: 200px;
 }
 
-.m-top-bottom{
+.m-top-bottom {
     margin-top: 8px;
     margin-bottom: 8px;
 }
 
-.big-card span{
-    padding-left:16px;
+.big-card span {
+    padding-left: 16px;
     font-size: 20px;
     font-weight: 500;
     color: white;
 }
-.info-buttons{
+
+.info-buttons {
     background-color: #5d615d !important;
     padding-top: 8px;
     justify-content: space-around;
     border-bottom: solid 1px rgba(13, 13, 13, 0.268);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.info-buttons button{
+
+.info-buttons button {
     margin-bottom: 8px;
-    border:none;
+    border: none;
     color: white;
     font-size: 18px;
     font-weight: 500;
 }
 
-.line{
+.line {
     height: 20px;
-    width:1px;
+    width: 1px;
     background-color: rgba(13, 13, 13, 0.268);
 }
 
-.mainTable{
-    margin:16px;
-}
-.mainTable-td{
-    padding-left:12px;
+.mainTable {
+    margin: 16px;
 }
 
-#mainContainer{
+.mainTable-td {
+    padding-left: 12px;
+}
+
+#mainContainer {
     color: white;
     font-weight: 400;
 }
-.td-progress{
+
+.td-progress {
     width: 80%;
     padding-left: 16px;
 }
+
 /* Type background-color */
-.bg-grass{
+.bg-grass {
     background-color: #76CC54;
 }
 
-.bg-poison{
+.bg-poison {
     background-color: #A65397;
 }
-.bg-fire{
+
+.bg-fire {
     background-color: #ED4225;
 }
-.bg-water{
+
+.bg-water {
     background-color: #4F9AFF;
 }
-.bg-bug{
+
+.bg-bug {
     background-color: #ABBB23;
 }
-.bg-flying{
+
+.bg-flying {
     background-color: #535C93;
 }
-.bg-electric{
+
+.bg-electric {
     background-color: #d2cf17;
 }
-.bg-ground{
+
+.bg-ground {
     background-color: #b5dd44;
 }
-.bg-normal{
+
+.bg-normal {
     background-color: #c7c2d5;
 }
-.bg-fairy{
+
+.bg-fairy {
     background-color: #594e77;
 }
-.bg-fighting{
+
+.bg-fighting {
     background-color: #550505;
 }
-.bg-psychic{
+
+.bg-psychic {
     background-color: #bd6e6e;
 }
-.bg-rock{
+
+.bg-rock {
     background-color: #534f4f;
 }
-.bg-ice{
+
+.bg-ice {
     background-color: #ffffffa8;
 }
-.bg-ghost{
+
+.bg-ghost {
     background-color: #728de5a8;
 }
 
 /* d-none*/
-.d-none{
+.d-none {
     display: none;
 }
 
@@ -274,51 +344,84 @@ h2{
     justify-content: space-around;
     align-items: center;
     padding: 16px;
-  }
-  
-  .evo-pokemon {
+}
+
+.evo-pokemon {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .evo-pokemon img {
+}
+
+.evo-pokemon img {
     width: 96px;
     height: 96px;
-  }
- 
+}
+
 /* media Query */
-@media (max-width:550px) {
-    .popup-content{
-      width:300px;
+@media (max-width:600px) {
+    #bigCard {
+        margin-top: 20px;
+        flex-direction: column;
+        justify-content: center;
     }
+
+    .arrowImg {
+        width: 30px;
+        height: 30px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    .media-display {
+        flex-wrap: nowrap !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width:550px) {
+    .popup-content {
+        width: 300px;
+    }
+
     .evo-pokemon img {
         width: 75px;
         height: 80px;
     }
-    .load-container {
-        padding-top: 8px;
-        padding-bottom: 8px;
-    }
-    .load-container button{
+
+    .load-container button {
         padding: 8px 70px 8px 70px;
-    }    
+    }
+
+    .filter-name {
+        font-size: 16px;
+        margin-top: 60px;
+        padding: 8px;
+    }
 }
+
 @media (max-width:500px) {
-    .popup-content{
-      width:260px;
-      height: 62vh;
+    .load-container {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .popup-content {
+        width: 260px;
+        height: 62vh;
     }
 
     .content {
         margin-top: 64px;
     }
-     .big-card-header{
+
+    .big-card-header {
         height: 30px;
         padding: 0px;
-    } 
+    }
 
-    .big-card-header span{
+    .big-card-header span {
         font-size: 16px;
     }
 
@@ -327,29 +430,33 @@ h2{
         font-size: 14px;
         font-weight: 500;
     }
-    .info-buttons button{
+
+    .info-buttons button {
         margin-bottom: 0px;
         font-size: 14px;
         font-weight: 500;
     }
+
     #mainContainer {
         font-size: 12px;
     }
-   .media-display{
-    flex-wrap: nowrap !important;
-    flex-direction: column;
-       justify-content: center;
-       align-items: center;
-    }
+
     .m-right {
         margin-left: 60px !important;
     }
-    .m-right input{
+
+    .m-right input {
         font-size: 12px;
     }
-} 
-@media (max-width: 380px) {
-    .load-container button{
+}
+
+@media (max-width: 400px) {
+    .load-container button {
         padding: 8px 50px 8px 50px;
-    }    
+    }
+
+    .big-card img {
+        width: 120px;
+        height: 120px;
+    }
 }

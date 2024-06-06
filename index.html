@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex</title>
-    <link rel="icon" type="image/png" href="./img/pokeBall.png" />
-    <script src="renderHTML.js" defer></script>
-    <script src="script.js" defer></script>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-  </head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokedex</title>
+  <link rel="icon" type="image/png" href="./img/pokeBall.png" />
+  <script src="renderHTML.js" defer></script>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
 
 <body onload="init()">
 
-<header>
+  <header>
     <nav class="navbar fixed-top bg-body-tertiary">
-        <div class="container-fluid media-display">       
-          <h2 onclick="init()" class="navbar-brand"><img src="./img/pokeBall.png">Pokédex</h2>
-          <div class="d-flex m-right" role="search">
-            <input oninput="filterName()"  id="search" class="form-control me-2" placeholder="Search a Pokemon...">
-          </div>
+      <div class="container-fluid media-display">
+        <h2 onclick="renderPokemonData()" class="navbar-brand">
+          <img src="./img/pokeBall.png">
+          Pokédex <img id="next-pokemon-img" class="pokemon-img-header" src="">
+        </h2>
+        <div class="d-flex m-right" role="search">
+          <input oninput="filterName()" id="search" class="form-control me-2" placeholder="Search a Pokémon...">
         </div>
-      </nav>
-</header>
+      </div>
+    </nav>
+  </header>
 
-    <div id="bigCard" onclick="closePopup()">
-       
-    </div>
-    </div>
-    <div id="content" class="content"></div>
-    <div class="load-container">
-      <button onclick="loadMorePokemon()" class="btn btn-primary color-red">Load more Pokemons</button>
-    </div>
-      
+  <div id="bigCard" onclick="closePopup()"></div>
+  <div id="content" class="content"></div>
+  <div class="load-container">
+    <button id="load-btn" onclick="loadMorePokemon()" class="btn btn-primary color-red load-container-button">Load more
+      Pokemons</button>
+  </div>
+
 </body>
+
 </html>
