@@ -71,6 +71,8 @@ h2 {
     --bs-btn-border-color: #bb191e;
     --bs-btn-disabled-bg: white;
     --bs-btn-disabled-border-color: white;
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 .load-container button:hover {

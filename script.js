@@ -19,10 +19,11 @@ async function fetchData() {
   for (let i = start; i <= end; i++) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
     const pokemon = await response.json();
+
     data.push(pokemon);
   }
-  start = start + 15;
-  end = end + 15;
+  start = start + 20;
+  end = end + 20;
   renderPokemonData();
 }
 
@@ -46,9 +47,9 @@ function nextImgHeader() {
     } else {
       indexNextIcon = indexNextIcon - 1;
     }
-    pokemonImg.src = img[indexNextIcon]; 
-    pokemonImg.classList.remove('fade-out'); 
-  }, 500); 
+    pokemonImg.src = img[indexNextIcon];
+    pokemonImg.classList.remove('fade-out');
+  }, 500);
   setTimeout(nextImgHeader, 4000);
 }
 
@@ -112,7 +113,7 @@ function renderStats(index) {
 }
 
 async function fetchEvolutionChain(pokemonId) {
-  const speciesResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/` );
+  const speciesResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/`);
   const speciesData = await speciesResponse.json();
   const evolutionChainUrl = speciesData["evolution_chain"]["url"];
   const evolutionChainResponse = await fetch(evolutionChainUrl);
@@ -153,17 +154,18 @@ function doNotClose(event) {
 }
 
 async function loadMorePokemon() {
-  document.getElementById("load-btn").disabled = true;
-  document.getElementById("load-btn").classList.remove('load-container-button');
-  document.getElementById("load-btn").classList.add('load-btn');
+  let loadButton = document.getElementById("load-btn");
+  loadButton.disabled = true;
+  loadButton.style.display = 'none';
 
   try {
     await fetchData();
-    console.log('funktoniert')
+    console.log('funktoniert');
   } catch (error) {
     console.error(error);
   }
-  document.getElementById("load-btn").disabled = false;
+  loadButton.disabled = false;
+  loadButton.style.display = 'flex';
 }
 
 function filterName() {
