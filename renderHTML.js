@@ -14,9 +14,9 @@ function renderCards(i, pokemonData) {
 
   function renderBigCard(index){
     return `
-       <img class="arrowImg" onclick="arrowLeftImage(${index}, event)" src="./img/arrow-left-solid.svg" alt="nach links Image" >
+       <img class="arrowImg" onclick="arrowRightImage(${index}, event)" src="./img/arrow-left-solid.svg" alt="nach links Image" >
        <div onclick="doNotClose(event)" id="popCard" class="popup-content"></div>
-       <img class="arrowImg" onclick="arrowRightImage(${index}, event)" src="./img/arrow-right-solid.svg" alt="nach rechts Image">`;
+       <img class="arrowImg" onclick="arrowLeftImage(${index}, event)" src="./img/arrow-right-solid.svg" alt="nach rechts Image">`;
   }
 
   function renderPopup(index, pokemonData){

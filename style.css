@@ -57,8 +57,8 @@ h2 {
     left: 0;
     right: 0;
     background-color: #2e302e;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .load-container-button {
@@ -81,7 +81,7 @@ h2 {
 
 .card {
     width: 12rem;
-    margin: 32px 16px 32px 16px;
+    margin: 36px 16px 36px 16px;
     cursor: pointer;
     transition: all 225ms ease-in-out;
 }
@@ -360,14 +360,17 @@ h2 {
 }
 
 /* media Query */
-@media (max-width:600px) {
-    #bigCard {
-        margin-top: 20px;
-        flex-direction: column;
-        justify-content: center;
+@media (max-width:670px) {
+    #bidCard{
+    margin-top: 32px;
     }
+}
 
-    .arrowImg {
+@media (max-width:600px) {
+/* .pokemon-img-header{
+    height: 25px;
+}*/
+    .arrowImg { 
         width: 30px;
         height: 30px;
         margin-top: 16px;
@@ -380,6 +383,18 @@ h2 {
         justify-content: center;
         align-items: center;
     }
+    .content{
+        padding-top: 70px;
+        padding-bottom: 0px;
+    }
+
+    .card{
+        margin-bottom: 8px;
+    }
+    .popup-content{
+        transform: scale(0.9);
+    }
+
 }
 
 @media (max-width:550px) {
@@ -404,6 +419,22 @@ h2 {
 }
 
 @media (max-width:500px) {
+
+    .big-card img {
+        width: 100px;
+        height: 100px;
+    }
+    #bigCard {
+        margin-top: 40px;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .arrowImg {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
     .load-container {
         padding-top: 30px;
         padding-bottom: 30px;
@@ -412,10 +443,7 @@ h2 {
     .popup-content {
         width: 260px;
         height: 62vh;
-    }
-
-    .content {
-        margin-top: 64px;
+        transform: scale(1);
     }
 
     .big-card-header {
@@ -457,8 +485,5 @@ h2 {
         padding: 8px 50px 8px 50px;
     }
 
-    .big-card img {
-        width: 120px;
-        height: 120px;
-    }
+   
 }

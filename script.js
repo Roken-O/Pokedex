@@ -7,7 +7,6 @@ let indexNextIcon = 0;
 async function init() {
   try {
     await fetchData();
-    console.log('funktoniert')
   } catch (error) {
     console.error(error);
   }
@@ -160,7 +159,6 @@ async function loadMorePokemon() {
 
   try {
     await fetchData();
-    console.log('funktoniert');
   } catch (error) {
     console.error(error);
   }
@@ -172,7 +170,6 @@ function filterName() {
   let numOfFilterName = 0;
   let search = document.getElementById("search").value;
   search = search.toLowerCase();
-  console.log(search);
   if (search.length > 2) {
     let content = document.getElementById("content");
     content.innerHTML = "";
